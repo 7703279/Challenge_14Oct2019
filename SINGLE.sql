@@ -86,6 +86,33 @@ INSERT INTO Booking(ClientID,TourName,EventMonth,EventDay,EventYear,Payment,Date
 INSERT INTO Booking(ClientID,TourName,EventMonth,EventDay,EventYear,Payment,DateBooked) VALUES (2,'West','Jan',29,2016,225,'12/17/2015');
 INSERT INTO Booking(ClientID,TourName,EventMonth,EventDay,EventYear,Payment,DateBooked) VALUES (3,'West','Jan',29,2016,200,'12/18/2015');
 
+--Task 3
+Select * from Tour; 
+Select * from Client; 
+Select * from Event; 
+Select * from Booking;
+
+--taks 4 
+--Query 1
+the client first name and surname, 
+the tour name and description, 
+the tour event year, month, day and fee, the booking date and the fee paid for the booking.
+
+SELECT C.GivenName, C.Surname, T.TourName, T.Description, E.EventYear, E.EventMonth, E.EventDay, E.EventFee, B.DateBooked, B.Payment
+From Booking B
+INNER JOIN Client C ON B.ClientID=C.ClientID
+INNER JOIN Event E ON E.TourName=B.TourName
+INNER JOIN Tour T ON T.TourName=B.TourName;
+
+--Query 2
+SELECT EventMonth, TourName, COUNT(ClientID) as 'Num Bookings'
+FROM Booking
+GROUP BY EventMonth, TourName;
+
+--Query 3
+
+
+
 
 
 
