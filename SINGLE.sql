@@ -33,12 +33,15 @@ ClientID INT,
 Surname NVARCHAR(100) NOT NULL,
 GivenName NVARCHAR(100) NOT NULL,
 Gender  NVARCHAR(1),
+CHECK (Gender IN ('M','F','I')),
 PRIMARY KEY(ClientID)
 );
 
 Create table Event(
 TourName NVARCHAR(100),
 EventMonth NVARCHAR(3),
+EventMonth VARCHAR(3),
+CHECK (EventMonth IN ('Jan', 'Feb', 'Mar', 'Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')),
 EventDay INT,
 EventYear INT,
 EventFee DECIMAL NOT NULL,
@@ -51,8 +54,11 @@ ClientID INT,
 TourName NVARCHAR(100),
 EventMonth  NVARCHAR(3),
 EventDay INT,
+CHECK(EventDay between 1 and 31),
 EventYear INT,
+CHECK (DATALENGTH(EventYear)=4),
 Payment DECIMAL,
+CHECK (Payment>0),
 DateBooked DATE NOT NULL,
 PRIMARY KEY(ClientID, TourName, EventMonth, EventDay, EventYear),
 FOREIGN KEY(ClientID) REFERENCES Client,
@@ -123,3 +129,11 @@ INNER JOIN Tour T ON T.TourName=B.TourName
 
 SELECT * FROM NewBooking
 
+--Task 6(Test queries)
+Gender IN ('M','F','I')
+EventDay between 1 and 31
+EventYear, DATALENGTH(EventYear)=4)
+EventMonth IN ('Jan', 'Feb', 'Mar', 'Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+Payment>0
+
+Based on the dictionary
