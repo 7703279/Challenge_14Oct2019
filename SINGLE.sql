@@ -110,3 +110,16 @@ SELECT *
 FROM Booking 
 WHERE Payment>(SELECT AVG(Payment) From Booking);
 
+--Task 5(Create a View)
+drop view NewBooking;
+
+CREATE VIEW NewBooking AS
+SELECT C.GivenName, C.Surname, T.TourName, T.Description, E.EventYear, E.EventMonth, E.EventDay, E.EventFee, B.DateBooked, B.Payment
+From Booking B
+INNER JOIN Client C ON B.ClientID=C.ClientID
+INNER JOIN Event E ON E.TourName=B.TourName
+INNER JOIN Tour T ON T.TourName=B.TourName
+
+
+SELECT * FROM NewBooking
+
