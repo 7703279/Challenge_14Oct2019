@@ -41,7 +41,7 @@ TourName NVARCHAR(100),
 EventMonth NVARCHAR(3),
 EventDay INT,
 EventYear INT,
-EventFee DECIMAL,
+EventFee DECIMAL NOT NULL,
 PRIMARY KEY(TourName,EventMonth,EventDay,EventYear),
 Foreign KEY(TourName) References Tour
 );
@@ -52,7 +52,7 @@ TourName NVARCHAR(100),
 EventMonth  NVARCHAR(3),
 EventDay INT,
 EventYear INT,
-Payment INT,
+Payment DECIMAL,
 DateBooked DATE NOT NULL,
 PRIMARY KEY(ClientID, TourName, EventMonth, EventDay, EventYear),
 FOREIGN KEY(ClientID) REFERENCES Client,
@@ -91,34 +91,4 @@ Select * from Tour;
 Select * from Client; 
 Select * from Event; 
 Select * from Booking;
-
---taks 4 
---Query 1
-the client first name and surname, 
-the tour name and description, 
-the tour event year, month, day and fee, the booking date and the fee paid for the booking.
-
-SELECT C.GivenName, C.Surname, T.TourName, T.Description, E.EventYear, E.EventMonth, E.EventDay, E.EventFee, B.DateBooked, B.Payment
-From Booking B
-INNER JOIN Client C ON B.ClientID=C.ClientID
-INNER JOIN Event E ON E.TourName=B.TourName
-INNER JOIN Tour T ON T.TourName=B.TourName;
-
---Query 2
-SELECT EventMonth, TourName, COUNT(ClientID) as 'Num Bookings'
-FROM Booking
-GROUP BY EventMonth, TourName;
-
---Query 3
-
-
-
-
-
-
-
-
-
-
-
 
